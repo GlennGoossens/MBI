@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GlennGoossens/B2B-MBI.git"
+    "url": "git+https://github.com/GlennGoossens/MBI.git"
   },
   "author": "Glenn Goossens",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GlennGoossens/B2B-MBI/issues"
+    "url": "https://github.com/GlennGoossens/MBI/issues"
   },
-  "homepage": "https://github.com/GlennGoossens/B2B-MBI#readme"
+  "homepage": "https://github.com/GlennGoossens/MBI#readme"
 }
