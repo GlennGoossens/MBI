@@ -6,33 +6,58 @@
           Product List
         </div>
       </h2>
+      
+      
+      <div class="ui center aligned segment ">
+      
+ <a href= "/products/new">
+  <button  class="ui positive button">Add Product</button>
+  </a>
+</div>
 
+<div class="ui divider"></div>
     <div class="ui center container">
+    <% products.forEach(function(p){ %>
     <div class="ui items">
         <div class="item">
             <div class="ui small image">
-                <img src="/images/morgan_blue.jpg">
+                <img src="<%= p.image %>">
             </div>
             <div class="content">
                 <div class="header">
-                    Morgan Blue
+                    <%= p.name %>
                 </div>
                 <div class="description">
-                    <p>Morgan Blue international</p>
+                    <p><%= p.description %></p>
                 </div>
                 <div class="extra">
                     <div class="ui stackable grid container">
-                        <div class="four wide column"></div>
+                        
                         <div class="four wide column">
                             <div class="ui right tag labels">
                                 <p class="ui label">
-                                    $10.00
+                                    € <%= p.price %>
                                 </p>
                             </div>
                         </div>
                         <div class="four wide column">
-                            <i class="green check icon"></i> Available</div>
-
+                        <% if(p.available){%>
+<i class="green check icon"></i> Available</div>
+                        <% }else{ %>
+<i class="red remove circle icon"></i> Not Available</div> 
+                        <%}%>
+                            
+                        <div class="four wide column">
+                        <div class="ui buttons">
+                        <form href="/products/<%= p._id%>?_method=DELETE" method="POST">
+  <button class="ui red button">Delete</button>
+  </form>
+  <div class="or"></div>
+  <a href="/products/<%= p._id%>/edit">
+  <button class="ui orange button">Edit</button>
+  </a>
+</div>
+                        </div>
                         <div class="four wide column">
                             <div class="ui  blue right floated button">
                                 Add to Cart
@@ -42,8 +67,10 @@
                 </div>
             </div>
         </div>
+         <div class="ui divider"></div>
+         <% }); %>
     </div>
-    <div class="ui divider"></div>
+   
 
     </div>
 
