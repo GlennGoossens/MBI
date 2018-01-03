@@ -42,21 +42,24 @@
                         </div>
                         <div class="four wide column">
                         <% if(p.available){%>
-<i class="green check icon"></i> Available</div>
+                            <i class="green check icon"></i> Available</div>
                         <% }else{ %>
-<i class="red remove circle icon"></i> Not Available</div> 
+                            <i class="red remove circle icon"></i> Not Available</div> 
                         <%}%>
                             
                         <div class="four wide column">
+                        <!-- adding middleware -->
                         <div class="ui buttons">
-                        <form href="/products/<%= p._id%>?_method=DELETE" method="POST">
-  <button class="ui red button">Delete</button>
-  </form>
-  <div class="or"></div>
-  <a href="/products/<%= p._id%>/edit">
-  <button class="ui orange button">Edit</button>
-  </a>
-</div>
+                        
+                        <form id="delete-form" action="/products/<%= p._id%>?_method=DELETE" method="POST">
+                            <button class="ui red button">Delete</button>
+                         </form>
+
+                        <div class="or"></div>
+                            <a href="/products/<%= p._id%>/edit">
+                                <button class="ui orange button">Edit</button>
+                            </a>
+                        </div>
                         </div>
                         <div class="four wide column">
                             <div class="ui  blue right floated button">

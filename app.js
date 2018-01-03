@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Product = require('./models/product');
 var multer = require("multer");
+var methodOverride = require("method-override");
 
 var seedDB = require("./seeds");
 
@@ -16,9 +17,6 @@ var profileRoutes = require("./routes/profile");
 mongoose.connect('mongodb://localhost/MBI', {
     useMongoClient: true
 });
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 
 //express setup
 app.use(bodyParser.urlencoded({
@@ -26,7 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-
+app.use(methodOverride("_method"));
 
 //SEED
 seedDB();

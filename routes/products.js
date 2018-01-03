@@ -47,6 +47,32 @@ Product.findById(req.params.id,function(err,foundP){
 });
 });
 
+router.put("/:id",function(req,res){
+    var a = req.body.product.available;
+    a ? req.body.product.available = true : req.body.product.available = false;
+    Product.findByIdAndUpdate(req.params.id,req.body.product,function(err,updatedProduct){
+        if(err){
+            console.log(err);
+            res.redirect("/");
+        }else{
+            console.log(updatedProduct);
+            res.redirect("/products");
+        }
+    });
+});
+
+
+router.delete("/:id",function(req,res){
+    Product.findByIdAndRemove(req.params.id,function(err){
+        if(err){
+            console.log(err);
+            res.redirect("/products");
+        }else{
+            res.redirect("/products");
+        }
+    });
+});
+
 /*
  var newItem = new Item();
  newItem.img.data = fs.readFileSync(req.files.userPhoto.path)

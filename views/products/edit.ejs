@@ -5,7 +5,7 @@
         <div class="column">
             <h2 class="ui blue header">
                 <div class="content">
-                    Add Product
+                   Edit <%= product.name %>
                 </div>
             </h2>
             <form class="ui large form" action="/products/<%= product._id %>?_method=PUT" method="POST">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
-                            <textarea name="product[description]" value="<%=product.description%>"></textarea>
+                            <textarea name="product[description]" value="<%=product.description%>"><%=product.description%></textarea>
                         </div>
                     </div>
                     <div class="field">
@@ -31,7 +31,11 @@
                         </div>
                     </div>
                     <div class="field">
-
+                        <!-- available checkbox -->
+                        <div class="ui checkbox">
+                        <input type="checkbox" name="product[available]" value="<%=product.available%>" <%= product.available ? "checked" : "" %>> 
+                        <label>Available</label>
+                        </div>
                     </div>
                     <div class="field">
                     <input type="submit" value="Add" class="ui fluid large positive submit button"/>
