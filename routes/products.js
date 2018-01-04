@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var Product = require("../models/product");
+var Order = require("../models/order");
+var User = require("../models/user");
 //home
 router.get("/", function (req, res) {
     Product.find({},function(err,p){
@@ -71,6 +73,10 @@ router.delete("/:id",function(req,res){
             res.redirect("/products");
         }
     });
+});
+
+router.post("/:id/add-to-cart",function(req,res){
+
 });
 
 /*

@@ -1,10 +1,44 @@
 var express = require("express");
 var router = express.Router();
+var passport = require("passport");
+var User = require("../models/user");
 
 //home
 router.get("/", function (req, res) {
     res.render("landing");
   
+});
+
+//auth
+router.get("/register",function(req,res){
+    res.render("register");
+});
+
+router.post("/register",function(req,res){
+    User.register(new User({
+        username: req.body.username,
+        address: req.body.address,
+        currentOrder: null,
+        orders: null
+    }),req.body.password,function(err,user){
+        if(err){
+            console.log(err);
+            return res.redirect("/");
+        }
+        passport.authenticate("local")(req,res,function(){
+            res.redirect("/products");
+        });
+    });
+});
+
+router.post("/login",passport.authenticate("local",{
+    successRedirect: "/products",
+    failureRedirect: "/"
+}),function(req,res){});
+
+router.get("/logout",function(req,res){
+    req.logout();
+    res.redirect("/");
 });
 
 

@@ -1,6 +1,6 @@
 [
 	{
-		"_id": "5a4cb772c15d152dccaef44b",
+		"_id": "5a4cc802a33dcf2eb400b068",
 		"name": "Kettingreiniger 5000cc",
 		"description": "Krachtige actieve reiniger en ontvetter voor het reinigen van ketting en versnellingsapparaat",
 		"price": "20",
@@ -9,7 +9,7 @@
 		"__v": 0
 	},
 	{
-		"_id": "5a4cb772c15d152dccaef44c",
+		"_id": "5a4cc802a33dcf2eb400b069",
 		"name": "Kettingreiniger 1000cc",
 		"description": "Krachtige actieve reiniger en ontvetter voor het reinigen van ketting en versnellingsapparaat",
 		"price": "10",
@@ -18,7 +18,7 @@
 		"__v": 0
 	},
 	{
-		"_id": "5a4cb772c15d152dccaef44d",
+		"_id": "5a4cc802a33dcf2eb400b06a",
 		"name": "Onderhoudskit Pro",
 		"description": "Compleet pakket aan producten en tools om uw fiets te poetsen en te onderhouden",
 		"price": "50",
