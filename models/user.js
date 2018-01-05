@@ -3,6 +3,11 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var UserSchema = new mongoose.Schema({
     username: String,
     password: String,
+    email:String,
+    tag:{
+        type: String,
+        default: "user"
+    },
     orders:[{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Order",

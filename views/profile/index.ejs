@@ -1,5 +1,52 @@
 <% include ../partials/header.ejs %>
 
 <h1>Profile Page</h1>
+<div class="ui grid">
+<div class="four wide column"><div class="ui clearing divider"></div></div>
+<div class="eight wide column">
+<div class="ui fluid card">
+  <div class="content">
+    <a class="header" onclick="return false"><%= currentUser.username %></a>
+    <div class="meta">
+      <span class="date"><%= currentUser.email%></span>
+    </div>
+    <div class="description">
+      <%= currentUser.address %>
+    </div>
+  </div>
+  <div class="ui bottom attached bleu button">
+    <i class="edit icon"></i>
+    Edit Profile
+  </div>
+</div>
+</div>
+<div class="four wide column"><div class="ui clearing divider"></div></div>
+</div>
+
+<table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="4">
+     Orders
+    </th>
+  </tr>
+    <tr>
+    <th class="single line">ID</th>
+    <th>Date</th>
+    <th>Price</th>
+    <th>Status</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="collapsing">
+        <i class="file outline icon"></i> 123456
+      </td>
+      <td>1/2/2017</td>
+      <td class="right aligned collapsing">50€</td>
+      <td class="right aligned collapsing">
+      <i class="green check icon"></i>Finished</td>
+    </tr>
+    
+  </tbody>
+</table>
 
 <% include ../partials/footer.ejs %>
