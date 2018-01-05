@@ -23,11 +23,24 @@
         <a class="item" href="/profile">
           Profile
         </a>
+        <%if(currentUser.tag === "admin"){%>
+        <a class="item" href="/statistieken">
+          Statistieken
+        </a>
+        <%}%>
         <a class="item right" href="/logout">
         Log out
         </a>
+        
       </div>
       <div class="ui segment">
+<%if(currentUser.tag === "admin"){%>
+<div class="ui attached inverted red message">
+  <i class="warning icon"></i>
+  Opgelet! Je gebruikt een admin account dus wees voorzichtig!
+</div>
+<%}%>
+      
         
       
   

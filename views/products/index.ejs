@@ -7,13 +7,14 @@
         </div>
       </h2>
       
-      
+      <%if(currentUser.tag === "admin"){%>
       <div class="ui center aligned segment ">
       
  <a href= "/products/new">
   <button  class="ui positive button">Add Product</button>
   </a>
 </div>
+<%}%>
 
 <div class="ui divider"></div>
     <div class="ui center container">
@@ -48,7 +49,7 @@
                         <%}%>
                             
                         <div class="four wide column">
-                        <!-- adding middleware -->
+                        <%if(currentUser.tag === "admin"){%>
                         <div class="ui buttons">
                         
                         <form id="delete-form" action="/products/<%= p._id%>?_method=DELETE" method="POST">
@@ -60,6 +61,7 @@
                                 <button class="ui orange button">Edit</button>
                             </a>
                         </div>
+                        <%}%>
                         </div>
                         <div class="four wide column">
                         <form id="add-to-cart-form" action="/products/<%= p._id%>/add-to-cart" method="POST">
