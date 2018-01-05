@@ -48,6 +48,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
+    app.locals.currentUser = req.user;
     next();
 });
 

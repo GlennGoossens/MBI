@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var middleware = require("../middelware");
 
 //home
 router.get("/", function (req, res) {
@@ -10,11 +11,11 @@ router.get("/", function (req, res) {
 });
 
 //auth
-router.get("/register",function(req,res){
+router.get("/register",middleware.isAdmin,function(req,res){
     res.render("register");
 });
 
-router.post("/register",function(req,res){
+router.post("/register",middleware.isAdmin,function(req,res){
     User.register(new User({
         username: req.body.username,
         address: req.body.address,

@@ -3,8 +3,10 @@ var router = express.Router();
 var Product = require("../models/product");
 var Order = require("../models/order");
 var User = require("../models/user");
+var middleware = require("../middelware");
+
 //home
-router.get("/", function (req, res) {
+router.get("/",middleware.isLoggedIn, function (req, res) {
     Product.find({},function(err,p){
         if(err){
             console.log(err);
@@ -14,11 +16,11 @@ router.get("/", function (req, res) {
     });
 });
 
-router.get("/new",function(req,res){
+router.get("/new",middleware.isAdmin,function(req,res){
     res.render("products/new");
 });
 
-router.post("/",function(req,res){
+router.post("/",middleware.isAdmin,function(req,res){
     console.log("entering adding product");
     var newProduct = {
         name : req.body.name,
@@ -37,7 +39,7 @@ router.post("/",function(req,res){
     });
 });
 
-router.get("/:id/edit",function(req,res){
+router.get("/:id/edit",middleware.isAdmin,function(req,res){
 Product.findById(req.params.id,function(err,foundP){
     if(err){
         console.log(err);
@@ -49,7 +51,7 @@ Product.findById(req.params.id,function(err,foundP){
 });
 });
 
-router.put("/:id",function(req,res){
+router.put("/:id",middleware.isAdmin,function(req,res){
     var a = req.body.product.available;
     a ? req.body.product.available = true : req.body.product.available = false;
     Product.findByIdAndUpdate(req.params.id,req.body.product,function(err,updatedProduct){
@@ -64,7 +66,7 @@ router.put("/:id",function(req,res){
 });
 
 
-router.delete("/:id",function(req,res){
+router.delete("/:id",middleware.isAdmin,function(req,res){
     Product.findByIdAndRemove(req.params.id,function(err){
         if(err){
             console.log(err);
@@ -75,7 +77,7 @@ router.delete("/:id",function(req,res){
     });
 });
 
-router.post("/:id/add-to-cart",function(req,res){
+router.post("/:id/add-to-cart",middleware.isLoggedIn,function(req,res){
 
 });
 

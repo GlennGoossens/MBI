@@ -1,7 +1,6 @@
 var middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req,res,next){
-    console.log(currentUser);
     if(req.isAuthenticated()){
         return next();
     }
@@ -9,10 +8,19 @@ middlewareObj.isLoggedIn = function(req,res,next){
 }
 
 middlewareObj.isAdmin = function(req,res,next){
-    if(admin){
+    if(req.user === undefined){
+            console.log("Got ya!");
+            res.redirect("/");
+    }else if(req.user.tag === "admin"){
         return next();
+    }else if(req.user.tag == "user"){
+        res.redirect("/products");
     }
-    res.redirect("back");
+}
+
+middlewareObj.logIT = function(req,res,next){
+    console.log(req.user);
+    return next();
 }
 
 module.exports = middlewareObj;
