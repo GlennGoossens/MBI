@@ -12,28 +12,33 @@
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
-                            <input type="text" name="product[name]" value="<%=product.name%>">
+                            <input type="text" name="product[name]" value="<%=product.name%>" required>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
-                            <textarea name="product[description]" value="<%=product.description%>"><%=product.description%></textarea>
+                            <textarea name="product[description]" value="<%=product.description%>" required><%=product.description%></textarea>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
-                            <input type="number" name="product[price]" value="<%=product.price%>" min="0.01" step="0.01">
+                            <input type="number" name="product[price]" value="<%=product.price%>" min="0.01" step="0.01" required>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
-                            <input type="text" name="product[image]" value="<%=product.image%>">
+                            <input type="number" name="product[box]" value="<%= product.box%>" min="1" step="1" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <input type="text" name="product[image]" value="<%=product.image%>" required>
                         </div>
                     </div>
                     <div class="field">
                         <!-- available checkbox -->
                         <div class="ui checkbox">
-                        <input type="checkbox" name="product[available]" value="<%=product.available%>" <%= product.available ? "checked" : "" %>> 
+                        <input type="checkbox" name="product[available]" value="<%=product.available%>" <%= product.available ? "checked" : "" %> required> 
                         <label>Available</label>
                         </div>
                     </div>

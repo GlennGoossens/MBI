@@ -32,7 +32,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 
 //SEED
-seedDB();
+//seedDB();
 
 //passport config
 app.use(require("express-session")({

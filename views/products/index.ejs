@@ -24,31 +24,32 @@
             <div class="ui small image">
                 <img src="<%= p.image %>">
             </div>
-            <div class="content">
+            <div class="middle aligned content">
                 <div class="header">
                     <%= p.name %>
                 </div>
                 <div class="description">
                     <p><%= p.description %></p>
+                    <p>There are <%= p.box %> items in 1 box<p>
                 </div>
-                <div class="extra">
+                <div class="bottom aligned extra">
                     <div class="ui stackable grid container">
                         
-                        <div class="four wide column">
+                        <div class="two wide column">
                             <div class="ui right tag labels">
                                 <p class="ui label">
                                     € <%= p.price %>
                                 </p>
                             </div>
                         </div>
-                        <div class="four wide column">
+                        <div class="three wide column">
                         <% if(p.available){%>
                             <i class="green check icon"></i> Available</div>
                         <% }else{ %>
                             <i class="red remove circle icon"></i> Not Available</div> 
                         <%}%>
                             
-                        <div class="four wide column">
+                        <div class="five wide column">
                         <%if(currentUser.tag === "admin"){%>
                         <div class="ui buttons">
                         
@@ -63,12 +64,17 @@
                         </div>
                         <%}%>
                         </div>
-                        <div class="four wide column">
-                        <form id="add-to-cart-form" action="/products/<%= p._id%>/add-to-cart" method="POST">
-                            <div class="ui  blue right floated button">
-                                Add to Cart
-                            </div>
-                            </form>
+                        <div class="six wide column">
+                        <form id="add-to-cart-form" class="ui form" action="/products/<%= p._id%>/add-to-cart" method="POST">
+                            <div class="fields">
+                                <div class="field">
+                                    <input type="number" name="box" placeholder="Items in Box" min="1" step="1" required>
+                                </div>
+                                <div class="field">
+                                    <button class="ui blue button">Add To Cart</button>
+                                </div>   
+                            </div>   
+                         </form>
                         </div>
                     </div>
                 </div>
@@ -79,6 +85,35 @@
     </div>
    
 
+</div>
+<% if(order != undefined){%>
+<div class="ui right rail">
+    <div class="ui segment">
+      <h3>Cart</h3>
+      <div class="ui divider"></div>
+        <div class="ui items">
+            <% order.products.forEach(function(pr){%>
+                <div class="item">
+                    <div class="content">
+                    <a class="header"><%= pr.product.name %></a>
+                    <div class="meta">
+                        <span><%= pr.aantal%></span>
+                    </div>
+                <div class="description">
+                    <p></p>
+                </div>
+                <div class="extra">
+                    <%= pr.totaal %>
+                </div>
+                <div class="ui divider"></div>
+            <%})%>
+            
+        </div>
+        </div>
     </div>
+</div>
+<%}%>
+
+  </div>
 
     <% include ../partials/footer.ejs %>

@@ -11,7 +11,16 @@ router.get("/",middleware.isLoggedIn, function (req, res) {
         if(err){
             console.log(err);
         }else{
-            res.render("products/index",{products: p});
+            //insert order of current user
+            Order.findOne({'owner':req.user.username,'status':'pending'},function(err,foundOrder){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(foundOrder);
+                    res.render("products/index",{products: p,order:foundOrder});
+                }
+            });
+            
         }
     });
 });
@@ -78,7 +87,13 @@ router.delete("/:id",middleware.isAdmin,function(req,res){
 });
 
 router.post("/:id/add-to-cart",middleware.isLoggedIn,function(req,res){
+    console.log(req.body.box);
+    console.log(req.params.id);
 
+    //eerst order zoeken indien geen => maken
+
+
+    res.redirect("/products");
 });
 
 /*
