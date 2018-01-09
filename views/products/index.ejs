@@ -86,34 +86,40 @@
    
 
 </div>
-<% if(order != undefined){%>
+
 <div class="ui right rail">
     <div class="ui segment">
-      <h3>Cart</h3>
+    <%if(order != null){%>
+<h3>Cart</h3>
       <div class="ui divider"></div>
         <div class="ui items">
-            <% order.products.forEach(function(pr){%>
+            <% if(order.products != null){%>
+                <% order.products.forEach(function(pr){%>
                 <div class="item">
                     <div class="content">
                     <a class="header"><%= pr.product.name %></a>
                     <div class="meta">
-                        <span><%= pr.aantal%></span>
+                        Amount : <span><%= pr.aantal%> </span>
                     </div>
-                <div class="description">
-                    <p></p>
-                </div>
                 <div class="extra">
-                    <%= pr.totaal %>
+                   Price : € <%= pr.totaal %>
                 </div>
                 <div class="ui divider"></div>
-            <%})%>
-            
+                <%});%>
+            <h4>Total Price : € <%=order.totalPrice%></h4>
+            <%}else{%>
+            <div class="item">
+            <div class="content"><h3>No products yet</h3></div>
+            </div>
+            <%}%>
+    <%}else{%>
+        <h1>no current Order</h1>
+    <%}%>
+      
         </div>
         </div>
     </div>
 </div>
-<%}%>
-
   </div>
 
     <% include ../partials/footer.ejs %>

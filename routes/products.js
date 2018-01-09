@@ -11,15 +11,24 @@ router.get("/",middleware.isLoggedIn, function (req, res) {
         if(err){
             console.log(err);
         }else{
-            //insert order of current user
-            Order.findOne({'owner':req.user.username,'status':'pending'},function(err,foundOrder){
+           Order.findOne({"owner.id":req.user.id,status: 'active'}).populate("products.product").exec(function(err,foundOrder){
+            if(err){
+                console.log(err);
+            }else{
+               console.log(foundOrder);
+               res.render("products/index",{products: p,order:foundOrder}); 
+            }   
+            
+           });
+            /*Order.findOne({"owner":req.user.username,"status":"active"},function(err,foundOrder){
                 if(err){
                     console.log(err);
                 }else{
                     console.log(foundOrder);
                     res.render("products/index",{products: p,order:foundOrder});
                 }
-            });
+            });*/
+            
             
         }
     });
@@ -89,11 +98,31 @@ router.delete("/:id",middleware.isAdmin,function(req,res){
 router.post("/:id/add-to-cart",middleware.isLoggedIn,function(req,res){
     console.log(req.body.box);
     console.log(req.params.id);
-
     //eerst order zoeken indien geen => maken
-
-
-    res.redirect("/products");
+    Order.create({
+        status:"active",
+        totalPrice: 0
+    },function(err,order){
+        order.owner.id = req.user._id;
+        order.owner.username = req.user.username;
+        Product.findById(req.params.id,function(err,foundProduct){
+            if(err){
+                console.log(err);
+            }else{
+                var proBj = {
+            product: foundProduct,
+            aantal: req.body.box,
+            totaal:0
+        };
+        order.products.push(proBj);
+        console.log(order.products);
+        order.save();
+        res.redirect("/products");
+            }
+        });
+        
+    });
+    
 });
 
 /*

@@ -6,7 +6,7 @@ var Order = require("./models/order");
 var data = [{
         name: "Kettingreiniger 5000cc",
         description: "Krachtige actieve reiniger en ontvetter voor het reinigen van ketting en versnellingsapparaat",
-        price: "20",
+        price: 20,
         image: "https://www.aertsactionbike.be/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chain_cleaner_5000cc.jpg",
         available: true,
         box: 10
@@ -14,7 +14,7 @@ var data = [{
     {
         name: "Kettingreiniger 1000cc",
         description: "Krachtige actieve reiniger en ontvetter voor het reinigen van ketting en versnellingsapparaat",
-        price: "10",
+        price: 10,
         image: "https://www.bikecentredik.nl/wp-content/uploads/2017/01/Morgan-Blue-Kettingreiniger.jpg",
         available: true,
         box: 24
@@ -22,7 +22,7 @@ var data = [{
     {
         name: "Onderhoudskit Pro",
         description: "Compleet pakket aan producten en tools om uw fiets te poetsen en te onderhouden",
-        price: "50",
+        price: 50,
         image: "https://www.fashionforcycling.be/6690-thickbox_default/morgan-blue-onderhoudskit-groot.jpg",
         available: false,
         box: 15
@@ -46,15 +46,21 @@ var userData = [{
 ];
 
 var orderData = [{
-products: null,
-status: "pending",
-totalPrice: "0"
-},
-{
-    products: null,
-    status: "finished",
-    totalPrice: "20"
-    }];
+        products: null,
+        status: "pending",
+        totalPrice: 0
+    },
+    {
+        products: null,
+        status: "finished",
+        totalPrice: 20
+    }, 
+    {
+        product : null,
+        status: "active",
+        totalPrice: 0
+    }
+];
 
 /*
 function seedDB() {
@@ -101,31 +107,35 @@ function seedDB() {
 }
 */
 
-function seedDB(){
+function seedDB() {
     Order.remove({}, function (err) {
         if (err) {
             console.log(err);
         } else {
             console.log("DATA cleared");
-        }});
-    orderData.forEach(function(order){
-        User.findOne({'username':'glenngoossens'},function(err,obj){
-            if(err){
+        }
+    });
+   /* orderData.forEach(function (order) {
+        User.findOne({
+            'username': 'glenngoossens'
+        }, function (err, obj) {
+            if (err) {
                 console.log(err);
-            }else{
+            } else {
                 console.log(obj);
                 order.owner = obj;
-                Order.create(order,function(err,newOrder){
-                    if(err){
+                Order.create(order, function (err, newOrder) {
+                    if (err) {
                         console.log(err);
-                    }else{
+                    } else {
                         console.log("Added order");
                     }
                 });
             }
         });
-        
+
     });
+*/
 }
 
 module.exports = seedDB;

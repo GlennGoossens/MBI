@@ -7,7 +7,7 @@ var orderSchema = new mongoose.Schema({
             ref: "Product"
         },
         aantal: Number,
-        totaal: String
+        totaal: Number
     }],
     date: {
         type: Date,
@@ -21,7 +21,7 @@ var orderSchema = new mongoose.Schema({
         },
         username: String
     },
-    totalPrice: String
+    totalPrice: Number
 });
 
 var Order = mongoose.model("Order", orderSchema);
