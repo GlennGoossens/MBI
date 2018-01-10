@@ -167,7 +167,7 @@ router.post("/:id/add-to-cart", middleware.isLoggedIn, function (req, res) {
                                 aantal: req.body.box,
                                 totaal: prijs
                             };
-                            foundOrder.totalPrice = parseInt(foundOrder.totalPrice) + (parseInt(req.body.box) * parseInt(foundOrder.products[i].product.price));
+                            foundOrder.totalPrice = parseInt(foundOrder.totalPrice) + (parseInt(req.body.box) * parseInt(foundProduct.price));
                             foundOrder.products.push(proBj);
                             //console.log(order.products);
                             foundOrder.save();
