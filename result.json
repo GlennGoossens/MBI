@@ -1,0 +1,21 @@
+[
+	{
+		"_id": "5a566ec967c3f136c48d431b",
+		"products": [
+			{
+				"_id": "5a566ec967c3f136c48d431c",
+				"product": "5a54fdd37f700113147b869b",
+				"aantal": 1112,
+				"totaal": 0
+			}
+		],
+		"date": "2018-01-10T19:51:37.251Z",
+		"status": "active",
+		"totalPrice": 0,
+		"__v": 1,
+		"owner": {
+			"id": "5a54fdd47f700113147b869e",
+			"username": "glenngoossens"
+		}
+	}
+]

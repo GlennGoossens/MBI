@@ -65,6 +65,7 @@
                         <%}%>
                         </div>
                         <div class="six wide column">
+                        <% if(p.available){%>
                         <form id="add-to-cart-form" class="ui form" action="/products/<%= p._id%>/add-to-cart" method="POST">
                             <div class="fields">
                                 <div class="field">
@@ -75,6 +76,7 @@
                                 </div>   
                             </div>   
                          </form>
+                         <%}%>
                         </div>
                     </div>
                 </div>
@@ -97,7 +99,7 @@
                 <% order.products.forEach(function(pr){%>
                 <div class="item">
                     <div class="content">
-                    <a class="header"><%= pr.product.name %></a>
+                    <h5 class="ui blue header"><%= pr.product.name %></h5>
                     <div class="meta">
                         Amount : <span><%= pr.aantal%> </span>
                     </div>
@@ -115,11 +117,17 @@
     <%}else{%>
         <h1>no current Order</h1>
     <%}%>
-      
+        <a class="fluid ui blue button" href="/orders">Check out</a>
         </div>
         </div>
     </div>
 </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
     <% include ../partials/footer.ejs %>
