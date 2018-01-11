@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-
+var shortid = require("shortid");
 var orderSchema = new mongoose.Schema({
+    _id:{
+        type:String,
+        'default':shortid.generate
+    },
     products: [{
         product: {
             type: mongoose.Schema.Types.ObjectId,
@@ -23,6 +27,7 @@ var orderSchema = new mongoose.Schema({
     },
     totalPrice: Number
 });
+
 
 var Order = mongoose.model("Order", orderSchema);
 module.exports = Order;

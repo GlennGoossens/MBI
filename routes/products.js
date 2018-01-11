@@ -4,6 +4,7 @@ var Product = require("../models/product");
 var Order = require("../models/order");
 var User = require("../models/user");
 var middleware = require("../middelware");
+var shortid = require("shortid");
 
 //home
 router.get("/", middleware.isLoggedIn, function (req, res) {
@@ -24,7 +25,6 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
                         order: foundOrder
                     });
                 }
-
             });
         }
     });
@@ -122,8 +122,8 @@ router.post("/:id/add-to-cart", middleware.isLoggedIn, function (req, res) {
                             };
                             order.totalPrice = prijs;
                             order.products.push(proBj);
-                            console.log(order.products);
                             order.save();
+                            console.log(order._id);
                             res.redirect("/products");
                         }
                     });

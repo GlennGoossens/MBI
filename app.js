@@ -19,9 +19,7 @@ var orderRoutes = require("./routes/order");
 var profileRoutes = require("./routes/profile");
 
 //DB
-mongoose.connect('mongodb://localhost/MBI', {
-    useMongoClient: true
-});
+mongoose.connect('mongodb://localhost/MBI');
 
 //express setup
 app.use(bodyParser.urlencoded({

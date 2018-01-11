@@ -6,12 +6,56 @@
           Orders
         </div>
       </h2>
-      <div class="ui center aligned segment ">
+      <div class="ui attached center aligned segment ">
         <h3>Cart</h3>
-        <div class="ui center aligned segment ">
         
+          <!-- insert cart -->
+          <%if(cart != undefined){%>
+          <table class="ui blue table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!--enter forEach cart-->
+          
+          <% cart.products.forEach(function(orderLine){%>
+            <tr>
+              <td class="collapsing"><%= orderLine.product.name%></td>
+              <td class="collapsing"><%= orderLine.aantal%></td>
+              <td class="collapsing"><%= orderLine.product.price%></td>
+              <td class="collapsing"><%= orderLine.totaal%></td>
+            </tr>
+            <%})%>
+            <%}else{%>
+            <p>No Current Order!</p>
+            <%}%>
+          <!-- end forEach cart-->
+          </tbody>
+          <!--<tfoot class="full-width">
+            <tr>
+              <th></th>
+              <th colspan="4">
+                <div class="ui right floated primary button">
+                   Update Cart
+                </div>
+              </th>
+            </tr>
+          </tfoot>-->
+          </table>
+          
       </div>
-      </div>
+      <%if(cart!=null){%>
+      <form action="/orders/<%=cart._id%>/checkout" method="POST">
+      <input type="submit" class="ui fluid blue bottom attached button" value="Check out">
+      </form>
+<%}%>
+
+
       <div class="ui center aligned segment ">
         <h3>Order history</h3>
         <table class="ui celled striped table">
@@ -27,16 +71,29 @@
     <th>Status</th>
   </tr></thead>
   <tbody>
+  <!--insert foreach -->
+  <%if(history != null){%>
+  <% history.forEach(function(order){%>
+    <%if(order.status != 'active'){%>
     <tr>
       <td class="collapsing">
-        <i class="file outline icon"></i> 123456
+        <i class="file outline icon"></i> <%= order._id %>
       </td>
-      <td>1/2/2017</td>
-      <td class="right aligned collapsing">50€</td>
+      <td><%= order.date.toDateString() %></td>
+      <td class="right aligned collapsing">€ <%=order.totalPrice %></td>
       <td class="right aligned collapsing">
-      <i class="green check icon"></i>Finished</td>
+      <!-- status pending or finished -->
+      <%if(order.status == 'closed'){%>
+      <i class="green check icon"></i>Finished
+      <%}else{%>
+      <i class="orange history icon"></i>Pending
+      <%}%>
+      </td>
     </tr>
-    
+    <%}%>
+    <%});%>
+    <%}%>
+    <!-- end foreach -->
   </tbody>
 </table>
       </div>
